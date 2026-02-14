@@ -13,6 +13,16 @@ Format: [Unreleased] / [Version] - YYYY-MM-DD
 
 ---
 
+## [0.3.0] - 2026-02-14
+
+- Introduced basic rules engine for scan
+- Added rule: detect missing <meta name='description'> tag
+- Added rule: detect missing viewport meta tag
+- All scan results displayed in popup list format
+- Maintained previous features and clean code structure
+
+---
+
 ## [0.2.0] - 2026-02-14
 
 - Responsive popup UI

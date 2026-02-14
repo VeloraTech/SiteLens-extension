@@ -22,20 +22,23 @@ sitelens-extension/
 1. **content.js**
    - Injected into active tab (fallback injection if missing, v0.2.0)
    - Collects DOM elements
+   - Basic rules engine (v0.3.0)
    - Applies rule engine (v0.1.0: alt, H1, meta, viewport)
-   - Responds to scan requests and returns H1 results (v0.2.0)
+   - Detects missing meta description and viewport tags (v0.3.0)
+   - Responds to scan requests and returns structured results (v0.3.0)
 
 2. **popup.js**
    - Handles button click
    - Sends message to content.js
    - Fallback: injects content.js if not present (v0.2.0)
    - Shows loading spinner while scanning (v0.2.0)
-   - Renders results in popup
+   - Renders all rule results in popup list format (v0.3.0)
    - Displays friendly message if no H1 tags found (v0.2.0)
 
 3. **popup.html & styles.css**
    - Responsive popup UI (v0.2.0)
    - Loading spinner and improved layout (v0.2.0)
+   - List format for scan results (v0.3.0)
    - Basic UI for MVP
    - Will evolve with UX improvements
 

@@ -27,13 +27,10 @@ document.getElementById("scanBtn").addEventListener("click", async () => {
                   results.innerHTML = `<div class="no-h1-message">Unable to scan this page.</div>`;
                   return;
                 }
-                if (response2 && response2.h1s && response2.h1s.length > 0) {
-                  results.innerHTML =
-                    `<ul>` +
-                    response2.h1s.map((h1) => `<li>${h1}</li>`).join("") +
-                    `</ul>`;
+                if (response2 && response2.results) {
+                  results.innerHTML = renderResults(response2.results);
                 } else {
-                  results.innerHTML = `<div class="no-h1-message">No H1 tags found on this page.</div>`;
+                  results.innerHTML = `<div class="no-h1-message">Unable to scan this page.</div>`;
                 }
               },
             );
@@ -42,13 +39,33 @@ document.getElementById("scanBtn").addEventListener("click", async () => {
         return;
       }
       spinner.style.display = "none";
-      if (response && response.h1s && response.h1s.length > 0) {
-        results.innerHTML =
-          `<ul>` +
-          response.h1s.map((h1) => `<li>${h1}</li>`).join("") +
-          `</ul>`;
+      if (response && response.results) {
+        results.innerHTML = renderResults(response.results);
       } else {
-        results.innerHTML = `<div class="no-h1-message">No H1 tags found on this page.</div>`;
+        results.innerHTML = `<div class="no-h1-message">Unable to scan this page.</div>`;
+      }
+      // Render all rule results in a list format
+      function renderResults(resultsArr) {
+        if (!Array.isArray(resultsArr) || resultsArr.length === 0) {
+          return `<div class="no-h1-message">No scan results found.</div>`;
+        }
+        return (
+          `<ul>` +
+          resultsArr
+            .map((rule) => {
+              let detailHtml = "";
+              if (rule.details && rule.details.length > 0) {
+                detailHtml =
+                  `<ul>` +
+                  rule.details.map((d) => `<li>${d}</li>`).join("") +
+                  `</ul>`;
+              }
+              let statusIcon = rule.status === "ok" ? "✅" : "❌";
+              return `<li><strong>${statusIcon} ${rule.rule}</strong>${detailHtml}</li>`;
+            })
+            .join("") +
+          `</ul>`
+        );
       }
     },
   );
