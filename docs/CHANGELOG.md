@@ -19,6 +19,9 @@ Format: [Unreleased] / [Version] - YYYY-MM-DD
 - Added rule: detect missing <meta name='description'> tag
 - Added rule: detect missing viewport meta tag
 - All scan results displayed in popup list format
+- Collapsible sections for each rule in popup
+- Visual severity indicators (high/medium/low)
+- Animations and transitions for dynamic UX
 - Maintained previous features and clean code structure
 
 ---
